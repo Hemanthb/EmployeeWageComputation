@@ -9,6 +9,7 @@ namespace EmployeeWageComputation
     internal class EmployeeAttendance
     {
         int fullDayHour = 8;
+        int partTimeHour = 4;
         int wagePerHour = 20;
         int dailyWage;
         Random random = new Random();
@@ -29,6 +30,11 @@ namespace EmployeeWageComputation
         {
             dailyWage = fullDayHour * wagePerHour;
             Console.WriteLine("Daily wage is"+dailyWage);
+        }
+        public void CalculatePartTimeWage()
+        {
+            int partTimeWage = partTimeHour * wagePerHour;
+            Console.WriteLine("Part Time wage is" + partTimeWage);
         }
     }
 }
