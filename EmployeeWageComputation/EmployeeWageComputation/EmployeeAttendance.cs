@@ -8,9 +8,13 @@ namespace EmployeeWageComputation
 {
     internal class EmployeeAttendance
     {
+        int fullDayHour = 8;
+        int wagePerHour = 20;
+        int dailyWage;
         Random random = new Random();
         public void CheckAttendance()
         {
+            
             if (random.Next(0, 2) == 0)
             {
                 Console.WriteLine("Employee is present");
@@ -19,6 +23,12 @@ namespace EmployeeWageComputation
             {
                 Console.WriteLine("Employee is absent");
             }
+        }
+
+        public void CalculateDailyWage()
+        {
+            dailyWage = fullDayHour * wagePerHour;
+            Console.WriteLine("Daily wage is"+dailyWage);
         }
     }
 }
