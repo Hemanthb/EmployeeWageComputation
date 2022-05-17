@@ -13,12 +13,14 @@ namespace EmployeeWageComputation
         const int isPartTime = 2;
         int wagePerHour = 20;
         Random random = new Random();
-        int workingDays = 20;
+        int totalWorkingDays = 20;
+        int maxWorkHours = 100;
+        int workingDays = 0;
         public void WageAsPerWorkHrs()
         {
-            for (int i = 0; i < workingDays; i++)
+            while(empWorkHours <= maxWorkHours && workingDays <= totalWorkingDays)
             {
-
+                workingDays++;
                 int workMode = random.Next(0, 3);
 
                 switch (workMode)
@@ -29,13 +31,13 @@ namespace EmployeeWageComputation
                     case isPartTime:
                         empWorkHours += 4;
                         break;
-                    Default:
+                    default:
                         empWorkHours += 0;
                         break;
                 }
             }
             int empWage = empWorkHours * wagePerHour;
-            Console.WriteLine("Employee wage for {0} hrs is {1}",empWorkHours, empWage);
+            Console.WriteLine("Employee wage for {0} hrs in {1} Days is {2}",empWorkHours,workingDays-1, empWage);
         }
     }
 }
