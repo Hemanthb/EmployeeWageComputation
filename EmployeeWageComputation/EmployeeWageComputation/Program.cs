@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
-EmployeeWageComputation.EmployeeAttendance employeeAttendance = new EmployeeWageComputation.EmployeeAttendance();
-EmployeeWageComputation.EmployeeWageCalculator wageCalculator = new EmployeeWageComputation.EmployeeWageCalculator();
+EmployeeWageComputation.EmployeeDetails employeeAttendance = new EmployeeWageComputation.EmployeeDetails();
 employeeAttendance.CheckAttendance();
 employeeAttendance.CalculateDailyWage();
 employeeAttendance.CalculatePartTimeWage();
-wageCalculator.WageAsPerWorkHrs();
+employeeAttendance.WageAsPerWorkHrs();
