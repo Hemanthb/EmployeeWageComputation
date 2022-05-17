@@ -8,27 +8,31 @@ namespace EmployeeWageComputation
 {
     internal class EmployeeWageCalculator
     {
-        int empWorkHours;
+        int empWorkHours = 0;
         const int isFullTime = 1;
         const int isPartTime = 2;
         int wagePerHour = 20;
         Random random = new Random();
-
+        int workingDays = 20;
         public void WageAsPerWorkHrs()
         {
-            int workMode = random.Next(0, 3);
-
-            switch (workMode)
+            for (int i = 0; i < workingDays; i++)
             {
-                case isFullTime:
-                    empWorkHours = 8;
-                    break;
-                case isPartTime:
-                    empWorkHours = 4;
-                    break;
-                Default:
-                    empWorkHours = 0;
-                    break;
+
+                int workMode = random.Next(0, 3);
+
+                switch (workMode)
+                {
+                    case isFullTime:
+                        empWorkHours += 8;
+                        break;
+                    case isPartTime:
+                        empWorkHours += 4;
+                        break;
+                    Default:
+                        empWorkHours += 0;
+                        break;
+                }
             }
             int empWage = empWorkHours * wagePerHour;
             Console.WriteLine("Employee wage for {0} hrs is {1}",empWorkHours, empWage);
