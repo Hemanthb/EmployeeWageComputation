@@ -3,4 +3,5 @@ EmployeeWageComputation.EmployeeDetails employeeAttendance = new EmployeeWageCom
 employeeAttendance.CheckAttendance();
 employeeAttendance.CalculateDailyWage();
 employeeAttendance.CalculatePartTimeWage();
-employeeAttendance.WageAsPerWorkHrs();
+employeeAttendance.WageAsPerWorkHrs("XYZ&Co",25,200,50);
+employeeAttendance.WageAsPerWorkHrs("AbC Industries", 22, 160, 60);
