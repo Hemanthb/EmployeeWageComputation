@@ -9,21 +9,42 @@ namespace EmployeeWageComputation
     public class EmployeeWageBuilder
     {
         const int IS_FULL_TIME = 1, IS_PART_TIME = 2;
-        private String company;
-        private int totalWorkingDays, maxWorkHours, wagePerHour;
+        //private String company;
+        //private int totalWorkingDays, maxWorkHours, wagePerHour;
+        private int numOfCompany,count=0;
+        private CompanyEmployeeWage[] companyEmployeeWageArray;
         Random random = new Random();
-        public EmployeeWageBuilder(String company,int totalWorkingDays,int maxWorkHours,int wagePerHour)
+        public EmployeeWageBuilder(int companies)
         {
-            this.company = company;
-            this.totalWorkingDays = totalWorkingDays;
-            this.maxWorkHours = maxWorkHours;
-            this.wagePerHour = wagePerHour;
+            /* this.company = company;
+             this.totalWorkingDays = totalWorkingDays;
+             this.maxWorkHours = maxWorkHours;
+             this.wagePerHour = wagePerHour;*/
+            this.numOfCompany = companies;
+            this.companyEmployeeWageArray = new CompanyEmployeeWage[this.numOfCompany];
 
         }
-        public void WageAsPerCompany()
+
+        public void AddCompanyEmpWageDetails(string company,int maxWorkingDays,int maxWorkingHrs,int wagePerHour)
+        {
+            this.companyEmployeeWageArray[count] = new CompanyEmployeeWage(company,maxWorkingDays,maxWorkingHrs,wagePerHour);
+            count++;
+        }
+
+        public void CalculateWageOfCompany()
+        {
+            for (int i = 0; i < this.numOfCompany; i++)
+            {
+                
+                companyEmployeeWageArray[i].setEmployeeWage(this.WageAsPerCompany(this.companyEmployeeWageArray[i]));
+            }
+        }
+
+        public int WageAsPerCompany(CompanyEmployeeWage employeeWage)
         {
             int empWorkHours = 0, workingDays = 0;
-            while (empWorkHours <= maxWorkHours && workingDays <= totalWorkingDays)
+            //Console.WriteLine(employeeWage.company+" "+employeeWage.maxWorkHours+" "+employeeWage.noOfWorkingDays);
+            while (empWorkHours <= employeeWage.maxWorkHours && workingDays <= employeeWage.noOfWorkingDays)
             {
                 workingDays++;
                 int workMode = random.Next(0, 3);
@@ -41,8 +62,9 @@ namespace EmployeeWageComputation
                         break;
                 }
             }
-            int empWage = empWorkHours * wagePerHour;
-            Console.WriteLine("Employee wage of firm - {0} is Rs.{1} ", company, empWage);
+            int empWage = empWorkHours * employeeWage.empRatePerHour;
+            Console.WriteLine("Employee wage of firm - {0} is Rs.{1} ", employeeWage.company, empWage);
+            return empWage;
         }
     }
 }
