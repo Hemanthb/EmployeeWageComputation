@@ -12,7 +12,8 @@ namespace EmployeeWageComputation
         //private String company;
         //private int totalWorkingDays, maxWorkHours, wagePerHour;
         private int numOfCompany,count=0;
-        private CompanyEmployeeWage[] companyEmployeeWageArray;
+        List<CompanyEmployeeWage> companyEmployeeWageList = new List<CompanyEmployeeWage>();
+        //private CompanyEmployeeWage[] companyEmployeeWageArray;
         Random random = new Random();
         public EmployeeWageBuilder(int companies)
         {
@@ -21,22 +22,23 @@ namespace EmployeeWageComputation
              this.maxWorkHours = maxWorkHours;
              this.wagePerHour = wagePerHour;*/
             this.numOfCompany = companies;
-            this.companyEmployeeWageArray = new CompanyEmployeeWage[this.numOfCompany];
+            //this.companyEmployeeWageArray = new CompanyEmployeeWage[this.numOfCompany];
 
         }
 
         public void AddCompanyEmpWageDetails(string company,int maxWorkingDays,int maxWorkingHrs,int wagePerHour)
         {
-            this.companyEmployeeWageArray[count] = new CompanyEmployeeWage(company,maxWorkingDays,maxWorkingHrs,wagePerHour);
+            //this.companyEmployeeWageArray[count] = new CompanyEmployeeWage(company,maxWorkingDays,maxWorkingHrs,wagePerHour);
+            companyEmployeeWageList.Add(new CompanyEmployeeWage(company,maxWorkingDays,maxWorkingHrs,wagePerHour));
             count++;
         }
 
         public void CalculateWageOfCompany()
         {
-            for (int i = 0; i < this.numOfCompany; i++)
+            foreach (CompanyEmployeeWage companyEmployeeWage in companyEmployeeWageList)
             {
-                
-                companyEmployeeWageArray[i].setEmployeeWage(this.WageAsPerCompany(this.companyEmployeeWageArray[i]));
+                companyEmployeeWage.setEmployeeWage(this.WageAsPerCompany(companyEmployeeWage));
+                //companyEmployeeWageArray[i].setEmployeeWage(this.WageAsPerCompany(this.companyEmployeeWageArray[i]));
             }
         }
 
