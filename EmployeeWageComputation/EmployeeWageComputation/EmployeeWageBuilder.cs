@@ -13,6 +13,7 @@ namespace EmployeeWageComputation
         //private int totalWorkingDays, maxWorkHours, wagePerHour;
         private int numOfCompany,count=0;
         List<CompanyEmployeeWage> companyEmployeeWageList = new List<CompanyEmployeeWage>();
+        Dictionary<string, CompanyEmployeeWage> CompanytotalAndDailyWage = new Dictionary<string, CompanyEmployeeWage>();
         //private CompanyEmployeeWage[] companyEmployeeWageArray;
         Random random = new Random();
         public EmployeeWageBuilder(int companies)
@@ -29,8 +30,9 @@ namespace EmployeeWageComputation
         public void AddCompanyEmpWageDetails(string company,int maxWorkingDays,int maxWorkingHrs,int wagePerHour)
         {
             //this.companyEmployeeWageArray[count] = new CompanyEmployeeWage(company,maxWorkingDays,maxWorkingHrs,wagePerHour);
-            companyEmployeeWageList.Add(new CompanyEmployeeWage(company,maxWorkingDays,maxWorkingHrs,wagePerHour));
-            count++;
+            CompanyEmployeeWage companyEmployeeWage = new CompanyEmployeeWage(company, maxWorkingDays, maxWorkingHrs, wagePerHour);
+            companyEmployeeWageList.Add(companyEmployeeWage);
+            CompanytotalAndDailyWage.Add(company, companyEmployeeWage);
         }
 
         public void CalculateWageOfCompany()
@@ -40,6 +42,10 @@ namespace EmployeeWageComputation
                 companyEmployeeWage.setEmployeeWage(this.WageAsPerCompany(companyEmployeeWage));
                 //companyEmployeeWageArray[i].setEmployeeWage(this.WageAsPerCompany(this.companyEmployeeWageArray[i]));
             }
+        }
+        public int IdentifyWageOfCompany(string company)
+        {
+            return this.CompanytotalAndDailyWage[company].totalEmpWage;
         }
 
         public int WageAsPerCompany(CompanyEmployeeWage employeeWage)
@@ -63,6 +69,7 @@ namespace EmployeeWageComputation
                         empWorkHours += 0;
                         break;
                 }
+
             }
             int empWage = empWorkHours * employeeWage.empRatePerHour;
             Console.WriteLine("Employee wage of firm - {0} is Rs.{1} ", employeeWage.company, empWage);
